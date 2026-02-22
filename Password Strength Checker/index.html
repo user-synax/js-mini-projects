@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pasword Strength Checker - Mini Projects | user-synax</title>
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+</head>
+
+<body class="flex justify-center items-center w-full h-full bg-gray-900">
+    <div class="w-full h-150 flex justify-center items-center flex-col">
+        <input placeholder="Type or paste your Password..." id="userInput" type="text" name="" id=""
+            class="border border-violet-500 rounded-xl text-white w-140 px-2 py-2 focus:outline-2 focus:outline-offset-2 focus:outline-violet-500">
+        <p class="text-white my-4" id="infoText"></p>
+        <button
+            class="border border-violet-500 cursor-pointer text-white py-2 px-4 rounded-md my-5 bg-violet-500 hover:bg-violet-900 hover:border-violet-900 transition-colors duration-300"
+            id="checkPassBtn">Check
+            Password</button>
+    </div>
+
+    <script>
+        const UserInput = document.getElementById("userInput")
+        const PasswordInfo = document.getElementById("infoText")
+        const CheckPasswordButton = document.getElementById("checkPassBtn")
+
+        CheckPasswordButton.addEventListener("click", () => {
+            let password = UserInput.value.trim()
+            let symbols = ['!', '@', '#', '$', '%', '^', '&', '*']
+            if (!password) {
+                PasswordInfo.textContent = 'Type or paste Your Password'
+                PasswordInfo.style.color = 'red'
+            } else if (password.length < 8) {
+                PasswordInfo.textContent = 'Password must be more than 8 characters'
+                PasswordInfo.style.color = 'red'
+            } else if (!UserInput.includes("!") && !UserInput.includes("@") || !UserInput.includes("#") || !UserInput.includes("$") || !UserInput.includes("%") || !UserInput.includes("^") || !UserInput.includes("&") || !UserInput.includes("*")) {
+                PasswordInfo.textContent = `Please Add Atleast One Symbol From these : [ ${symbols} ]`
+                PasswordInfo.style.color = 'red'
+            }
+        })
+
+    </script>
+</body>
+
+</html>
