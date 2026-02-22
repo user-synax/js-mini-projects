@@ -23,22 +23,32 @@
         const UserInput = document.getElementById("userInput")
         const PasswordInfo = document.getElementById("infoText")
         const CheckPasswordButton = document.getElementById("checkPassBtn")
-
         CheckPasswordButton.addEventListener("click", () => {
             let password = UserInput.value.trim()
             let symbols = ['!', '@', '#', '$', '%', '^', '&', '*']
             if (!password) {
                 PasswordInfo.textContent = 'Type or paste Your Password'
                 PasswordInfo.style.color = 'red'
+                setTimeout(() => {
+                    PasswordInfo.textContent = ''
+                }, 1000);
             } else if (password.length < 8) {
                 PasswordInfo.textContent = 'Password must be more than 8 characters'
                 PasswordInfo.style.color = 'red'
-            } else if (!UserInput.includes("!") && !UserInput.includes("@") || !UserInput.includes("#") || !UserInput.includes("$") || !UserInput.includes("%") || !UserInput.includes("^") || !UserInput.includes("&") || !UserInput.includes("*")) {
-                PasswordInfo.textContent = `Please Add Atleast One Symbol From these : [ ${symbols} ]`
+                setTimeout(() => {
+                    PasswordInfo.textContent = ''
+                }, 1000);
+            } else if (!symbols.some(sym => password.includes(sym))) {
+                PasswordInfo.textContent = `Please add Atleast one Symbol [ ${symbols} ]`
                 PasswordInfo.style.color = 'red'
+                setTimeout(() => {
+                    PasswordInfo.textContent = ''
+                }, 1000);
+            } else {
+                PasswordInfo.textContent = `Strong Password : [ ${password} ]`
+                PasswordInfo.style.color = 'Green'
             }
         })
-
     </script>
 </body>
 
